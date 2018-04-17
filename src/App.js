@@ -6,9 +6,9 @@ import './App.css'
 console.log('formAPI', process.env.REACT_APP_SIGNUP_API)
 const formAPI = process.env.REACT_APP_SIGNUP_API
 
-function formHandler(fields) {
+function formHandler(email) {
   const data = {
-    hi: 'there'
+    email: email
   }
   return axios({
     method: 'post',
@@ -20,7 +20,8 @@ function formHandler(fields) {
 
 class App extends Component {
   handleSubmit = (event, data) => {
-    formHandler()
+    event.preventDefault()
+    formHandler(this.email.value)
   }
   render() {
     return (
@@ -38,6 +39,7 @@ class App extends Component {
                     type="email"
                     name="email"
                     className="sign-up"
+                    ref={input => this.email = input}
                     placeholder="Enter your email address..."
                     required
                     />
