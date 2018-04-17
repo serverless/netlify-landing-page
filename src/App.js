@@ -1,10 +1,27 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 import './bootstrap.css'
 import './App.css'
 
-console.log(process.env)
+console.log('formAPI', process.env.REACT_APP_SIGNUP_API)
+const formAPI = process.env.REACT_APP_SIGNUP_API
+
+function formHandler(fields) {
+  const fields = {
+    hi: 'there'
+  }
+  return axios({
+    method: 'post',
+    url: formAPI,
+    data: fields,
+  })
+}
+
 
 class App extends Component {
+  handleSubmit => () {
+    formHandler()
+  }
   render() {
     return (
       <div className="App">
@@ -16,7 +33,7 @@ class App extends Component {
               <h1>Sign up to get notified<br/>when we launch!</h1>
 
               <div className="col-md-6 col-md-offset-3 mt">
-                <form>
+                <form onSubmit={this.handleSubmit}>
                   <input
                     type="email"
                     name="email"
