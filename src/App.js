@@ -15,7 +15,7 @@ export default class App extends Component {
     event.preventDefault()
     const email = this.email.value
 
-    if (email) {
+    if (!email) {
       alert('Please email your email')
     }
 
