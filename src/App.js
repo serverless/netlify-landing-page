@@ -7,19 +7,19 @@ console.log('formAPI', process.env.REACT_APP_SIGNUP_API)
 const formAPI = process.env.REACT_APP_SIGNUP_API
 
 function formHandler(fields) {
-  const fields = {
+  const data = {
     hi: 'there'
   }
   return axios({
     method: 'post',
     url: formAPI,
-    data: fields,
+    data: data,
   })
 }
 
 
 class App extends Component {
-  handleSubmit => () {
+  handleSubmit = (event, data) => {
     formHandler()
   }
   render() {
