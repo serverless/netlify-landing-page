@@ -163,6 +163,8 @@ h4 {
 .landing-page h1 {
   color: white;
   font-size: 70px;
+  letter-spacing: -2px;
+  word-spacing: 3px;
 }
 .landing-page h2 {
   color: white;
