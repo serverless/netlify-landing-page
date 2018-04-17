@@ -4,7 +4,7 @@
 * {
   margin: 0;
   padding: 0px;
-    font-family: 'Lato', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 body {
   background: #fff;
@@ -13,7 +13,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Lato', sans-serif;
+  font-family: 'Lato', sans-serif;
   font-weight: 300;
 }
 
@@ -21,7 +21,7 @@ h1, h2, h3, h4, h5, h6 {
 p {
   padding: 0;
   margin-bottom: 12px;
-    font-family: 'Lato', sans-serif;
+  font-family: 'Lato', sans-serif;
   font-weight: 300;
   font-size: 18px;
   line-height: 28px;
@@ -34,34 +34,24 @@ body {
   height: 100%;
 }
 
-.alignleft { float: left; }
-.alignright { float: right; }
+.alignleft {
+  float: left;
+}
+.alignright {
+  float: right;
+}
 .aligncenter {
   margin-left: auto;
   margin-right: auto;
   display: block;
   clear: both;
 }
-.centered {text-align: center}
+.centered {
+  text-align: center
+}
 .mt {
   margin-top: 50px;
 }
-.mb {
-  margin-bottom: 50px;
-}
-.mtb {
-  margin-top: 50px;
-  margin-bottom: 50px;
-}
-.mtb2 {
-  margin-top: 100px;
-  margin-bottom: 100px;
-}
-.ptb {
-  padding-top: 80px;
-  padding-bottom: 80px;
-}
-
 .clear {
   clear: both;
   display: block;
@@ -72,13 +62,13 @@ body {
 }
 ::-moz-selection  {
   color: #fff;
-  text-shadow:none;
-  background:#2B2E31;
+  text-shadow: none;
+  background: #2B2E31;
 }
 ::selection {
   color: #fff;
-  text-shadow:none;
-  background:#2B2E31;
+  text-shadow: none;
+  background: #2B2E31;
 }
 *,
 *:after,
@@ -121,9 +111,10 @@ h4 {
 }
 
 #root {
-  display:flex;
-  grow:1;
-  width:100%;
+  display: flex;
+  flex-grow: 1;
+  width: 100%;
+  height: 100vh;
 }
 
 .App {
@@ -141,18 +132,31 @@ h4 {
   width: 100%;
   background-size: 100%;
   background-size: cover;
+  height: 100vh;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
 }
-.background {
-
+.landing-page .container {
+  z-index: 3;
+  position: relative;
 }
-
+.backdrop {
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.35);
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: 1;
+}
 .landing-page h3.logo {
   font-weight: 900;
   text-align: center;
   color: white;
   margin-bottom: 120px;
   border: 3px solid white;
-  width: 200px;
+  width: 305px;
   padding: 12px;
 }
 
@@ -160,7 +164,9 @@ h4 {
   color: white;
   font-size: 70px;
 }
-
+.landing-page h2 {
+  color: white;
+}
 
 .landing-page .continue {
   font-size: 30px;

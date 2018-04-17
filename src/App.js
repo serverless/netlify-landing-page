@@ -5,7 +5,7 @@ import './App.css'
 
 const formAPI = process.env.REACT_APP_SIGNUP_API
 
-class App extends Component {
+export default class App extends Component {
   state = {
     loading: false,
     success: false,
@@ -13,10 +13,17 @@ class App extends Component {
   }
   handleSubmit = (event, data) => {
     event.preventDefault()
+    const email = this.email.value
+
+    if (email) {
+      alert('Please email your email')
+    }
+
     this.setState({
       loading: true
     })
-    formHandler(this.email.value).then(() => {
+
+    formHandler(email).then(() => {
       this.setState({
         success: true,
         loading: false
@@ -37,7 +44,7 @@ class App extends Component {
     if (success) {
       return (
         <div>
-          Thanks for signing up!
+          <h2>Thanks for signing up!</h2>
         </div>
       )
     }
@@ -59,15 +66,19 @@ class App extends Component {
     )
   }
   render() {
-    console.log('formAPI', process.env.REACT_APP_SIGNUP_API)
     return (
       <div className="App">
         <div className="landing-page">
-          <div className="container">
+          <div className='backdrop'></div>
+          <div className='container'>
             <div className="row centered">
-              <h3 className="logo aligncenter">ServerLess</h3>
+              <h3 className="logo aligncenter">
+                Serverless Components
+              </h3>
 
-              <h1>Sign up to get notified<br/>when we launch!</h1>
+              <h1>
+                Sign up to get notified<br/>when we launch!
+              </h1>
 
               <div className="col-md-6 col-md-offset-3 mt">
                 {this.renderForm()}
@@ -100,5 +111,3 @@ function formHandler(email) {
 function noOp() {
   console.log('submission in progress')
 }
-
-export default App
