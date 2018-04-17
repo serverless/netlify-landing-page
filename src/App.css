@@ -194,11 +194,29 @@ input {
 
 .sign-up {
   float: left;
-  width: 65%;
+  width: 70%;
   text-align: left;
   margin-right: 2px;
 }
 
 .sign-up-button {
   right: 0;
+}
+
+@media (max-width: 767px) {
+  .sign-up {
+    width: 70%;
+  }
+  .landing-page h1 {
+    font-size: 35px;
+  }
+  .landing-page h3.logo {
+    margin-bottom: 50px;
+  }
+}
+
+@media (max-width: 570px) {
+  .sign-up {
+    width: 100%;
+  }
 }
