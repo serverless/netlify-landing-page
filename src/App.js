@@ -3,27 +3,63 @@ import axios from 'axios'
 import './bootstrap.css'
 import './App.css'
 
-console.log('formAPI', process.env.REACT_APP_SIGNUP_API)
 const formAPI = process.env.REACT_APP_SIGNUP_API
 
-function formHandler(email) {
-  const data = {
-    email: email
-  }
-  return axios({
-    method: 'post',
-    url: formAPI,
-    data: data,
-  })
-}
-
-
 class App extends Component {
+  state = {
+    loading: false,
+    success: false,
+    error: false
+  }
   handleSubmit = (event, data) => {
     event.preventDefault()
-    formHandler(this.email.value)
+    this.setState({
+      loading: true
+    })
+    formHandler(this.email.value).then(() => {
+      this.setState({
+        success: true,
+        loading: false
+      })
+    }).catch((e) => {
+      this.setState({
+        error: true,
+        loading: false
+      })
+    })
+  }
+  renderForm() {
+    const { success, loading } = this.state
+    const buttonText = (loading) ? '...' : 'Notify Me'
+    const handler = (loading) ? noOp : this.handleSubmit
+
+    /* if they submitted the form, show thanks */
+    if (success) {
+      return (
+        <div>
+          Thanks for signing up!
+        </div>
+      )
+    }
+
+    return (
+      <form onSubmit={handler}>
+        <input
+          type="email"
+          name="email"
+          className="sign-up"
+          ref={input => this.email = input}
+          placeholder="Enter your email address..."
+          required
+        />
+        <button className="btn btn-lg btn-green sign-up-button" type="submit">
+          {buttonText}
+        </button>
+      </form>
+    )
   }
   render() {
+    console.log('formAPI', process.env.REACT_APP_SIGNUP_API)
     return (
       <div className="App">
         <div className="landing-page">
@@ -34,19 +70,7 @@ class App extends Component {
               <h1>Sign up to get notified<br/>when we launch!</h1>
 
               <div className="col-md-6 col-md-offset-3 mt">
-                <form onSubmit={this.handleSubmit}>
-                  <input
-                    type="email"
-                    name="email"
-                    className="sign-up"
-                    ref={input => this.email = input}
-                    placeholder="Enter your email address..."
-                    required
-                    />
-                  <button className="btn btn-lg btn-green sign-up-button" type="submit">
-                    Notify Me
-                  </button>
-                </form>
+                {this.renderForm()}
               </div>
             </div>
 
@@ -62,4 +86,19 @@ class App extends Component {
   }
 }
 
-export default App;
+function formHandler(email) {
+  const data = {
+    email: email
+  }
+  return axios({
+    method: 'post',
+    url: formAPI,
+    data: data,
+  })
+}
+
+function noOp() {
+  console.log('submission in progress')
+}
+
+export default App
